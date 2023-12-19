@@ -13,7 +13,7 @@ export interface RequestInterceptors<T = AxiosResponse<any>> {
   ) => InternalAxiosRequestConfig
   requestInterceptorsCatch?: (error: any) => any
   //响应的拦截
-  responseInterceptors?: (res: T) => T
+  responseInterceptors?: (res: IResultType<T>) => IResultType<T>
   responseInterceptorsCatch?: (error: any) => any
 }
 
@@ -39,4 +39,11 @@ export interface InterceptorsConfig<T = AxiosResponse<any>>
 // 定义一个返回类型的接口
 export interface Response extends AxiosResponse<any> {
   config: InterceptorsConfig
+}
+
+// 服务器返回的数据类型 叠加 axios 自带的数据
+export interface IResultType<T = any> extends AxiosResponse<any> {
+  config: InterceptorsConfig
+  status: number
+  data: T
 }

@@ -1,12 +1,15 @@
 import { Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
+import { NavBar } from './cpn'
 
 const Discover = () => {
   return (
-    <Suspense fallback="">
-      <div>discover</div>
-      <Outlet></Outlet>
-    </Suspense>
+    <>
+      <NavBar></NavBar>
+      <Suspense fallback="">
+        <Outlet></Outlet>
+      </Suspense>
+    </>
   )
 }
 
