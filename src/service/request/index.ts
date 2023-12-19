@@ -3,7 +3,8 @@ import type {
   RequestInterceptors,
   RequestConfig,
   Response,
-  InterceptorsConfig
+  InterceptorsConfig,
+  IResultType
 } from './type' //导入接口
 import qs from 'qs'
 const pendingRequests = new Map() // 存放正在请求 的请求
@@ -59,11 +60,6 @@ class Request {
         // 拿到本次的Key,请求这次请求记录
         const requestKey = res.config.requestKey
         pendingRequests.delete(requestKey)
-
-        // 替换 axios 自带参数为 自己的参数
-        res.status = res.data.status
-        res.statusText = res.data.msg
-        res.data = res.data.data
 
         // 如果 token 无效,判断是否已经有请求在刷新token
         if (res.status === 1005) {
@@ -137,7 +133,7 @@ class Request {
 
   // 在类里面定义一个方法 使用这个方法需要传入 config参数
   // 里面有单独请求拦截器的逻辑
-  request<T>(config: RequestConfig<T>): Promise<T> {
+  request<T>(config: RequestConfig<T>): Promise<IResultType<T>> {
     return new Promise((resolve, reject) => {
       if (config.interceptors?.requestInterceptors) {
         // 如果有传入请求拦截器 调用处理函数 处理响应 再把请求赋值出去
@@ -146,7 +142,7 @@ class Request {
         )
       }
       this.instance
-        .request<any, T>(config)
+        .request<any, IResultType<T>>(config)
         .then((res) => {
           if (config.interceptors?.responseInterceptors) {
             // 如果有传入响应拦截器 调用处理函数 处理响应结果 再把结果赋值出去
@@ -165,19 +161,19 @@ class Request {
     })
   }
   //定义其他函数
-  get<T>(config: RequestConfig<T>): Promise<T> {
+  get<T>(config: RequestConfig<T>): Promise<IResultType<T>> {
     return this.request<T>({ ...config, method: 'GET' })
   }
 
-  post<T>(config: RequestConfig<T>): Promise<T> {
+  post<T>(config: RequestConfig<T>): Promise<IResultType<T>> {
     return this.request<T>({ ...config, method: 'POST' })
   }
 
-  delete<T>(config: RequestConfig<T>): Promise<T> {
+  delete<T>(config: RequestConfig<T>): Promise<IResultType<T>> {
     return this.request<T>({ ...config, method: 'DELETE' })
   }
 
-  patch<T>(config: RequestConfig<T>): Promise<T> {
+  patch<T>(config: RequestConfig<T>): Promise<IResultType<T>> {
     return this.request<T>({ ...config, method: 'PATCH' })
   }
 

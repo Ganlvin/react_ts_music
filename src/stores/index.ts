@@ -5,9 +5,12 @@ import {
   TypedUseSelectorHook,
   shallowEqual as reduxShallowEqual
 } from 'react-redux'
+import recommend from './module/recommend'
 
 const store = configureStore({
-  reducer: {}
+  reducer: {
+    recommend
+  }
 })
 
 type GetStateFnType = typeof store.getState
