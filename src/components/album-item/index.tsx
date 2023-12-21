@@ -2,7 +2,7 @@ import { memo } from 'react'
 import type { FC, ReactNode } from 'react'
 import { AlbumItemWrapper } from './style'
 import { getImageSize } from '@/utils/format'
-import { IAlbum } from '@/service/type'
+import { IAlbum } from '@/service/api/common/type'
 
 interface IProps {
   children?: ReactNode

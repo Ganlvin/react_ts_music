@@ -32,3 +32,44 @@ export function formatTime(time: number) {
 
   return `${formatMinute}:${formatSecond}`
 }
+
+export function formatDate(time: string | number, fmt: string) {
+  const date = new Date(time)
+
+  if (/(y+)/.test(fmt)) {
+    fmt = fmt.replace(
+      RegExp.$1,
+      (date.getFullYear() + '').substr(4 - RegExp.$1.length)
+    )
+  }
+  const o: Record<string, number> = {
+    'M+': date.getMonth() + 1,
+    'd+': date.getDate(),
+    'h+': date.getHours(),
+    'm+': date.getMinutes(),
+    's+': date.getSeconds()
+  }
+  for (const k in o) {
+    if (new RegExp(`(${k})`).test(fmt)) {
+      const str = o[k] + ''
+      fmt = fmt.replace(
+        RegExp.$1,
+        RegExp.$1.length === 1 ? str : padLeftZero(str)
+      )
+    }
+  }
+  return fmt
+}
+
+function padLeftZero(str: string) {
+  str = str.toString()
+  return ('00' + str).slice(str.length)
+}
+
+export function formatMonthDay(time: string | number) {
+  return formatDate(time, 'MM月dd日')
+}
+
+export function formatMinuteSecond(time: number | string) {
+  return formatDate(time, 'mm:ss')
+}
