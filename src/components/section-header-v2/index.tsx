@@ -9,7 +9,7 @@ interface IProps {
   moreLink?: string
 }
 
-const AreaHeaderV2: FC<IProps> = (props) => {
+const SectionHeaderV2: FC<IProps> = (props) => {
   const { title = '默认标题', moreText, moreLink } = props
 
   return (
@@ -20,4 +20,4 @@ const AreaHeaderV2: FC<IProps> = (props) => {
   )
 }
 
-export default memo(AreaHeaderV2)
+export default memo(SectionHeaderV2)

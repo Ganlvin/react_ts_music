@@ -1,14 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { IBanner, IHotRecommend, IRanking } from '@/service/api/recommend/type'
-import { IAlbum, IArtist } from '@/service/type'
+import { IBanner, IHotRecommend } from '@/service/api/recommend/type'
+import { IAlbum, IArtist, IRanking } from '@/service/api/common/type'
 import { IResultType } from '@/service/request/type'
 import {
   getBannerRequest,
   getHotRecommendRequest,
   getNewAlbumRequest,
-  getRankingRequest,
   getSettleSingerRequest
 } from '@/service/api/recommend'
+import { getRankingDetailRequest } from '@/service/api/common'
 
 export const getBannerDataAction = createAsyncThunk(
   'banners',
@@ -47,7 +47,7 @@ export const getRankingAction = createAsyncThunk(
     type ResType = IResultType<{ playlist: IRanking }>
     const promises: Promise<ResType>[] = []
     for (const id of rankingIds) {
-      promises.push(getRankingRequest(id))
+      promises.push(getRankingDetailRequest(id))
     }
     Promise.all(promises).then((res) => {
       const playlists = res.map((item) => item.data.playlist)

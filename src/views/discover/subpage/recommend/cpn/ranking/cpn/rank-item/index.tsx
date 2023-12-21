@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { type ReactNode, FC } from 'react'
 import { RankingItemWrapper } from './style'
-import { IRanking } from '@/service/api/recommend/type'
+import { IRanking } from '@/service/api/common/type'
 import { getImageSize } from '@/utils/format'
 import { useAppDispatch } from '@/stores'
 import { getPlayerSongAction } from '@/stores/module/app-play-bar'

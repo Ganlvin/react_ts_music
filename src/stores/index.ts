@@ -7,11 +7,13 @@ import {
 } from 'react-redux'
 import recommend from './module/recommend'
 import playBar from './module/app-play-bar'
+import toplist from './module/toplist'
 
 const store = configureStore({
   reducer: {
     recommend,
-    playBar
+    playBar,
+    toplist
   }
 })
 

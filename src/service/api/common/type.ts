@@ -41,3 +41,35 @@ export interface IArtist {
   picId_str: string
   img1v1Id_str: string
 }
+
+export interface IRanking {
+  id: number
+  coverImgUrl: string
+  name: string
+  updateTime: string
+  subscribedCount: number
+  shareCount: number
+  commentCount: number
+  playCount: number
+  tracks: {
+    id: number
+    name: string
+    ar: { name: string }[]
+    fee: number
+    al: { picUrl: string }
+    dt: number
+    videoInfo: {
+      moreThanOne: boolean
+      video: {
+        vid: string
+        type: number
+        title: string
+        playTime: number
+        coverUrl: string
+        publishTime: null
+        artists: null
+        alias: null
+      } | null
+    }
+  }[]
+}

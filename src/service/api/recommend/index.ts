@@ -1,6 +1,6 @@
 import request from '../../index'
-import { IBanner, IHotRecommend, IRanking } from './type'
-import { IAlbum, IArtist } from '@/service/type'
+import { IBanner, IHotRecommend } from './type'
+import { IAlbum, IArtist } from '@/service/api/common/type'
 
 enum mainAPI {
   GetBanner = '/banner',
@@ -28,14 +28,6 @@ export function getHotRecommendRequest(limit = 30) {
 // 获取新碟上架数据
 export function getNewAlbumRequest() {
   return request.get<{ albums: IAlbum[] }>({ url: mainAPI.GetNewAlbum })
-}
-
-// 获取排行榜
-export function getRankingRequest(id: number) {
-  return request.get<{ playlist: IRanking }>({
-    url: mainAPI.GetRanking,
-    params: { id }
-  })
 }
 
 // 获取入住歌手
