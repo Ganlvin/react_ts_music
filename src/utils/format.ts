@@ -11,6 +11,7 @@ export function getImageSize(
   width: number,
   height: number = width
 ) {
+  if (!imageUrl) return ''
   return imageUrl + `?param=${width}y${height}`
 }
 
