@@ -28,5 +28,5 @@ export interface IRanking {
   id: number
   coverImgUrl: string
   name: string
-  tracks: { id: number; name: string }[]
+  tracks: { id: number; name: string; fee: number }[]
 }

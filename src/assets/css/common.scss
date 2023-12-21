@@ -65,10 +65,21 @@ button {
   background: url(../img/sprite_table.png) no-repeat 0 9999px;
 }
 
-.sprite_playbar {
+.sprite_play_bar {
   background: url(../img/playbar_sprite.png) no-repeat 0 9999px;
 }
 
 .sprite_playlist {
   background: url(../img/playlist_sprite.png) no-repeat 0 9999px;
+}
+
+.one-line {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all; // 只对英文起作用，以字母作为依据，强制换行
+  line-break: anywhere; // 任意位置都可以作为换行点，包括任意的标点。
+  white-space: normal !important;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }

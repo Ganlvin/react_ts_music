@@ -3,6 +3,8 @@ import { type ReactNode, FC } from 'react'
 import { RankingItemWrapper } from './style'
 import { IRanking } from '@/service/api/recommend/type'
 import { getImageSize } from '@/utils/format'
+import { useAppDispatch } from '@/stores'
+import { getPlayerSongAction } from '@/stores/module/app-play-bar'
 
 interface IProps {
   children?: ReactNode
@@ -12,6 +14,17 @@ interface IProps {
 const RankItem: FC<IProps> = (props) => {
   const { rankData } = props
   const { tracks = [] } = rankData
+  const dispatch = useAppDispatch()
+
+  // 播放歌曲
+  function handlePlayClick(id: number, fee: number) {
+    if (fee === 1) {
+      console.log('需要会员')
+      return
+    }
+    dispatch(getPlayerSongAction(id))
+  }
+
   return (
     <RankingItemWrapper>
       <div className="header">
@@ -37,7 +50,7 @@ const RankItem: FC<IProps> = (props) => {
                 <div className="operator">
                   <button
                     className="btn sprite_02 play"
-                    // onClick={() => handlePlayClick(item.id)}
+                    onClick={() => handlePlayClick(item.id, item.fee)}
                   ></button>
                   <button className="btn sprite_icon2 add"></button>
                   <button className="btn sprite_02 favor"></button>

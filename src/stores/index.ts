@@ -6,16 +6,18 @@ import {
   shallowEqual as reduxShallowEqual
 } from 'react-redux'
 import recommend from './module/recommend'
+import playBar from './module/app-play-bar'
 
 const store = configureStore({
   reducer: {
-    recommend
+    recommend,
+    playBar
   }
 })
 
 type GetStateFnType = typeof store.getState
-type IRootState = ReturnType<GetStateFnType>
 type DispatchType = typeof store.dispatch
+export type IRootState = ReturnType<GetStateFnType>
 
 export const useAppSelector: TypedUseSelectorHook<IRootState> = useSelector
 export const useAppDispatch: () => DispatchType = useDispatch
