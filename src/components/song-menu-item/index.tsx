@@ -1,21 +1,27 @@
-import { IHotRecommend } from '@/service/api/recommend/type'
 import { memo } from 'react'
 import { type ReactNode, FC } from 'react'
 import { MenuItemWrapper } from './style'
 import { getImageSize, formatCount } from '@/utils/format'
+import { IPlaylist } from '@/service/api/common/type'
+import classNames from 'classnames'
 
 interface IProps {
   children?: ReactNode
-  itemData: IHotRecommend
+  itemData: IPlaylist
+  coverSource?: boolean
+  oneLineTitle?: boolean
 }
 
 const SongMenuItem: FC<IProps> = (props) => {
-  const { itemData } = props
+  const { itemData, coverSource = false, oneLineTitle = false } = props
 
   return (
     <MenuItemWrapper>
       <div className="top">
-        <img src={getImageSize(itemData.picUrl, 140)} alt="" />
+        <img
+          src={getImageSize(itemData.picUrl || itemData.coverImgUrl, 140)}
+          alt=""
+        />
         <div className="cover sprite_cover">
           <div className="info sprite_cover">
             <span>
@@ -26,7 +32,14 @@ const SongMenuItem: FC<IProps> = (props) => {
           </div>
         </div>
       </div>
-      <div className="bottom">{itemData.name}</div>
+      <div className={classNames('title', { 'one-line': oneLineTitle })}>
+        {itemData.name}
+      </div>
+      {coverSource && (
+        <div className="cover-source">
+          by {itemData.copywriter || itemData.creator?.nickname}
+        </div>
+      )}
     </MenuItemWrapper>
   )
 }

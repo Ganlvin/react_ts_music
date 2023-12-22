@@ -27,7 +27,7 @@ export const PlayerBarWrapper = styled.div`
   }
 `
 interface IBarControl {
-  isPlaying: boolean
+  $isPlaying: boolean
 }
 export const BarControl = styled.div<IBarControl>`
   display: flex;
@@ -54,7 +54,8 @@ export const BarControl = styled.div<IBarControl>`
     width: 36px;
     height: 36px;
     margin: 0 8px;
-    background-position: 0 ${(props) => (props.isPlaying ? '-165px' : '-204px')};
+    background-position: 0
+      ${(props) => (props.$isPlaying ? '-165px' : '-204px')};
     &:hover {
       background-position: -40px -204px;
     }
@@ -156,8 +157,8 @@ export const BarPlayerInfo = styled.div`
 `
 
 interface IBarOperator {
-  playMode: number
-  volume: number
+  $playMode: number
+  $volume: number
 }
 export const BarOperator = styled.div<IBarOperator>`
   display: flex;
@@ -207,7 +208,7 @@ export const BarOperator = styled.div<IBarOperator>`
 
     .volume {
       background-position: ${(props) => {
-        if (props.volume) {
+        if (props.$volume) {
           return ' -2px -248px;'
         } else {
           return ' -104px -69px;'
@@ -215,7 +216,7 @@ export const BarOperator = styled.div<IBarOperator>`
       }};
       &:hover {
         background-position: ${(props) => {
-          if (props.volume) {
+          if (props.$volume) {
             return ' -31px -248px;'
           } else {
             return ' -126px -69px;'
@@ -226,7 +227,7 @@ export const BarOperator = styled.div<IBarOperator>`
 
     .loop {
       background-position: ${(props) => {
-        switch (props.playMode) {
+        switch (props.$playMode) {
           case 1:
             return '-66px -248px'
           case 2:
@@ -237,7 +238,7 @@ export const BarOperator = styled.div<IBarOperator>`
       }};
       &:hover {
         background-position: ${(props) => {
-          switch (props.playMode) {
+          switch (props.$playMode) {
             case 0:
               return '-33px -344px'
             case 1:

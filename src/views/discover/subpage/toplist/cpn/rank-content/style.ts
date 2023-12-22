@@ -14,6 +14,11 @@ export const RankContentWrapper = styled.div`
         font-weight: bold;
       }
     }
+    .sub-title {
+      display: inline-block;
+      font-size: 12px;
+      margin: 9px 0 0 20px;
+    }
   }
   .play-list {
     table {

@@ -9,7 +9,7 @@ interface IProps {
   keywords?: string[]
   moreText?: string
   moreLink?: string
-  subTitle?: string
+  subTitle?: ReactNode
   rightPart?: ReactNode
 }
 
@@ -26,7 +26,7 @@ const SectionHeaderV1: FC<IProps> = (props) => {
     <SectionHeaderV1Wrapper className="section-header-v1 sprite_02">
       <div className="left">
         <h3 className="title">
-          {title} <span className="sub-title">{subTitle}</span>
+          {title} {subTitle}
         </h3>
         <div className="keywords">
           {keywords.map((item) => {

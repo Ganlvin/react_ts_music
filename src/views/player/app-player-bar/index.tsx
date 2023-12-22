@@ -178,9 +178,8 @@ const AppPlayerBar: FC<IProps> = () => {
 
   return (
     <PlayerBarWrapper className="sprite_play_bar" ref={closeRef}>
-      {String(showPanel)}
       <div className="content wrap-v2">
-        <BarControl isPlaying={isPlaying}>
+        <BarControl $isPlaying={isPlaying}>
           <button
             className="btn sprite_play_bar prev"
             onClick={() => handleChangeMusic(false)}
@@ -229,7 +228,7 @@ const AppPlayerBar: FC<IProps> = () => {
             </div>
           </div>
         </BarPlayerInfo>
-        <BarOperator playMode={playSetting.mode} volume={playSetting.volume}>
+        <BarOperator $playMode={playSetting.mode} $volume={playSetting.volume}>
           <div className="left">
             <button className="btn pip"></button>
             <button className="btn sprite_play_bar favor"></button>

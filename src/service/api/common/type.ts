@@ -73,3 +73,19 @@ export interface IRanking {
     }
   }[]
 }
+
+export interface IPlaylist {
+  id: number
+  type: number
+  name: string
+  copywriter: string
+  picUrl?: string
+  canDislike: boolean
+  trackNumberUpdateTime: number
+  coverImgUrl?: string
+  playCount: number
+  trackCount: number
+  highQuality: boolean
+  alg: string
+  creator?: { nickname: string }
+}

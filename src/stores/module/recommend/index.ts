@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { IBanner, IHotRecommend } from '@/service/api/recommend/type'
-import { IAlbum, IArtist, IRanking } from '@/service/api/common/type'
+import { IBanner } from '@/service/api/recommend/type'
+import { IAlbum, IArtist, IRanking, IPlaylist } from '@/service/api/common/type'
 import { IResultType } from '@/service/request/type'
 import {
   getBannerRequest,
@@ -67,7 +67,7 @@ export const getSettleSingerAction = createAsyncThunk(
 
 interface IRecommendState {
   banners: IBanner[]
-  hotRecommends: IHotRecommend[]
+  hotRecommends: IPlaylist[]
   newAlbums: IAlbum[]
   rankings: IRanking[]
   settleSingers: IArtist[]

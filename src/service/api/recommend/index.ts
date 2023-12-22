@@ -1,6 +1,6 @@
 import request from '../../index'
-import { IBanner, IHotRecommend } from './type'
-import { IAlbum, IArtist } from '@/service/api/common/type'
+import { IBanner } from './type'
+import { IAlbum, IArtist, IPlaylist } from '@/service/api/common/type'
 
 enum mainAPI {
   GetBanner = '/banner',
@@ -19,7 +19,7 @@ export function getBannerRequest() {
 
 // 获取热门推荐歌单
 export function getHotRecommendRequest(limit = 30) {
-  return request.get<{ result: IHotRecommend[] }>({
+  return request.get<{ result: IPlaylist[] }>({
     url: mainAPI.GetHotRecommend,
     params: { limit }
   })
