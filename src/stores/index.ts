@@ -8,12 +8,14 @@ import {
 import recommend from './module/recommend'
 import playBar from './module/app-play-bar'
 import toplist from './module/toplist'
+import playlist from './module/playlist'
 
 const store = configureStore({
   reducer: {
     recommend,
     playBar,
-    toplist
+    toplist,
+    playlist
   }
 })
 

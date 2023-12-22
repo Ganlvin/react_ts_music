@@ -21,11 +21,6 @@ export const SectionHeaderV1Wrapper = styled.div`
       font-family: 'Microsoft Yahei', Arial, Helvetica, sans-serif;
       margin-right: 20px;
     }
-    .sub-title {
-      display: inline-block;
-      font-size: 12px;
-      margin: 9px 0 0 20px;
-    }
 
     .keywords {
       display: flex;

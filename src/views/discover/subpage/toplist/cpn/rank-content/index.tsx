@@ -19,7 +19,11 @@ const RankContent: FC<IProps> = () => {
         <RankContentWrapper>
           <SectionHeaderV1
             title="歌曲列表"
-            subTitle={toplistDetail.tracks.length + '首歌'}
+            subTitle={
+              <span className="sub-title">
+                {toplistDetail.tracks.length + '首歌'}
+              </span>
+            }
             rightPart={
               <div className="play-count">
                 播放：<span className="count">{toplistDetail.playCount}</span>{' '}
