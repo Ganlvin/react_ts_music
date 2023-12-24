@@ -16,7 +16,7 @@ interface IProps {
 const SectionHeaderV1: FC<IProps> = (props) => {
   const {
     title = '默认标题',
-    subTitle = '小标题',
+    subTitle = null,
     keywords = [],
     moreText = '更多',
     moreLink = '/',

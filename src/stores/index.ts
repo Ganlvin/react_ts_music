@@ -9,13 +9,15 @@ import recommend from './module/recommend'
 import playBar from './module/app-play-bar'
 import toplist from './module/toplist'
 import playlist from './module/playlist'
+import globalUser from './module/user'
 
 const store = configureStore({
   reducer: {
     recommend,
     playBar,
     toplist,
-    playlist
+    playlist,
+    globalUser
   }
 })
 

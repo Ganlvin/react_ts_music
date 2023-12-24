@@ -111,4 +111,17 @@ export const HeaderRight = styled.div`
       border-color: #fff;
     }
   }
+  .login {
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .avatar {
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 30px;
+    }
+  }
 `
