@@ -5,6 +5,8 @@ import { SearchOutlined } from '@ant-design/icons'
 import { Input } from 'antd'
 import { HeaderLeft, HeaderRight, HeaderWrapper } from './style'
 import navBarData from '@/assets/data/nav-bar.json'
+import { LoginPanel } from '../login-panel'
+import { shallowEqual, useAppSelector } from '@/stores'
 
 interface IProps {
   children?: ReactNode
@@ -13,6 +15,13 @@ interface IProps {
 const NavBar: FC<IProps> = () => {
   const [showSearchTip, setShowSearchTip] = useState(true)
   const [searchText, setSearchText] = useState('')
+
+  const { userProfile } = useAppSelector(
+    (state) => ({
+      userProfile: state.globalUser.profile
+    }),
+    shallowEqual
+  )
 
   function handleShowSearchTip() {
     setShowSearchTip(!showSearchTip)
@@ -41,6 +50,22 @@ const NavBar: FC<IProps> = () => {
       )
     }
   }
+  function isShowLogin() {
+    if (userProfile.userId) {
+      return (
+        <div className="avatar">
+          <img src={userProfile.avatarUrl} alt="" />
+        </div>
+      )
+    } else {
+      return (
+        <span className="login" onClick={LoginPanel.open}>
+          登录
+        </span>
+      )
+    }
+  }
+
   return (
     <HeaderWrapper>
       <div className="content wrap-v1">
@@ -69,7 +94,7 @@ const NavBar: FC<IProps> = () => {
             prefix={<SearchOutlined />}
           />
           <span className="center">创作者中心</span>
-          <span className="login">登录</span>
+          {isShowLogin()}
         </HeaderRight>
       </div>
       <div className="divider"></div>
