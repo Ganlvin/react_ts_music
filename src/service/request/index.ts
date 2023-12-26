@@ -24,7 +24,7 @@ class Request {
     //config 是 WLRequestConfig 这个类型 所以会有 interceptors属性
     this.interceptors = config.interceptors
     // 最大重试次数
-    this.maxRetry = 5
+    this.maxRetry = 1
 
     //所有的实例都有的拦截器
     this.instance.interceptors.request.use(

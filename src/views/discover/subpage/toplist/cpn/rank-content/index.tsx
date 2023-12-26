@@ -1,4 +1,4 @@
-import { useAppSelector } from '@/stores'
+import { shallowEqual, useAppSelector } from '@/stores'
 import { memo } from 'react'
 import { type ReactNode, FC } from 'react'
 import { RankContentWrapper } from './style'
@@ -10,9 +10,12 @@ interface IProps {
 }
 
 const RankContent: FC<IProps> = () => {
-  const { toplistDetail } = useAppSelector((state) => ({
-    toplistDetail: state.toplist.toplistDetail
-  }))
+  const { toplistDetail } = useAppSelector(
+    (state) => ({
+      toplistDetail: state.toplist.toplistDetail
+    }),
+    shallowEqual
+  )
   return (
     <>
       {toplistDetail && (
@@ -61,7 +64,7 @@ const RankContent: FC<IProps> = () => {
                           ) : null}
                           <span className="play sprite_table"></span>
                           <span className="name">{item.name}</span>
-                          {item.videoInfo.video && (
+                          {item.videoInfo?.video && (
                             <span className="mv sprite_table"></span>
                           )}
                         </div>

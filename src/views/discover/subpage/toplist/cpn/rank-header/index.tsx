@@ -3,17 +3,20 @@ import { type ReactNode, FC } from 'react'
 import { RankingHeaderWrapper } from './style'
 import SongOperationBar from '@/components/song-operation-bar'
 import { formatMonthDay } from '@/utils/format'
-import { useAppSelector } from '@/stores'
+import { shallowEqual, useAppSelector } from '@/stores'
 
 interface IProps {
   children?: ReactNode
 }
 
 const RankHeader: FC<IProps> = () => {
-  const { rankInfo, toplist } = useAppSelector((state) => ({
-    rankInfo: state.toplist.toplistDetail,
-    toplist: state.toplist.toplist
-  }))
+  const { rankInfo, toplist } = useAppSelector(
+    (state) => ({
+      rankInfo: state.toplist.toplistDetail,
+      toplist: state.toplist.toplist
+    }),
+    shallowEqual
+  )
   const updateTime = toplist.find((i) => i.id == String(rankInfo?.id))
     ?.updateFrequency
   return (
