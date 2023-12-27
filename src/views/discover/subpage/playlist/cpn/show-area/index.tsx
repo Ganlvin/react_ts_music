@@ -5,7 +5,6 @@ import { shallowEqual, useAppSelector } from '@/stores'
 import SongMenuItem from '@/components/song-menu-item'
 import Pagination from '@/components/pagination'
 import { useSearchParams } from 'react-router-dom'
-
 interface IProps {
   children?: ReactNode
 }
@@ -13,6 +12,7 @@ interface IProps {
 const PlaylistShowArea: FC<IProps> = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const [currentPage, setCurrentPage] = useState(1)
+
   const { playlistInfo } = useAppSelector(
     (state) => ({
       playlistInfo: state.playlist.playlistInfo
@@ -23,6 +23,7 @@ const PlaylistShowArea: FC<IProps> = () => {
   function onPageChange(page: number) {
     const query = Object.fromEntries(searchParams.entries())
     setSearchParams({ ...query, page: String(page) })
+    window.scrollTo({ top: 0 })
   }
   useEffect(() => {
     setCurrentPage(Number(searchParams.get('page')))
