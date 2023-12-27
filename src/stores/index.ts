@@ -10,6 +10,7 @@ import playBar from './module/app-play-bar'
 import toplist from './module/toplist'
 import playlist from './module/playlist'
 import globalUser from './module/user'
+import djRadio from './module/djradio'
 
 const store = configureStore({
   reducer: {
@@ -17,7 +18,8 @@ const store = configureStore({
     playBar,
     toplist,
     playlist,
-    globalUser
+    globalUser,
+    djRadio
   }
 })
 
